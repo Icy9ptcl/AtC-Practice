@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run program",
+      "command": "dotnet run",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Test your code with test cases",
+      "command": "npm run test",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "Submit your code",
+      "command": "npm run submit",
+      "request": "launch",
+      "type": "node-terminal"
+    }
+  ]
+}

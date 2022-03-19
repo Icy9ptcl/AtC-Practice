@@ -1,0 +1,12 @@
+{
+  "task": {
+    "program": [
+      "package.json",
+      ".vscode/launch.json",
+      "./data/Program.cs",
+      "init.ps1",
+      "note.md"
+    ],
+    "submit": "Program.cs"
+  }
+}

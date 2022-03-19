@@ -1,0 +1,10 @@
+{
+  "name": "challenge",
+  "private": true,
+  "scripts": {
+    "test": "oj t -c \"dotnet run\"",
+    "submit": "acc submit -s -- -l 4010",
+    "run": "dotnet run",
+    "init": "powershell ./init.ps1"
+  }
+}

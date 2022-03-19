@@ -1,0 +1,16 @@
+help.txt
+**/.old
+**/test
+**/obj
+**/bin
+**/.vscode
+**/package.json
+**/init.ps1
+**/*.csproj
+**/data
+**/note.md
+**/contest.acc.json
+Config/session.json
+Config/config.json
+!Config/csharp/*
+Beginner/start.ps1
