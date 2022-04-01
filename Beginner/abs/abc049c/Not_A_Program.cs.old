@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+
+namespace abs_abc049c {
+  class Program {
+    static List<string> Parts = new List<String>() {
+        "dream",
+        "dreamer",
+        "erase",
+        "eraser"
+      };
+
+    static string randomGeneratePart() {
+      string ans = "";
+      var Rnd = new Random();
+      int maxIndex = Parts.Count - 1;
+      while (ans.Length < 10000) {
+        ans = ans + Parts[Rnd.Next(0, maxIndex)];
+      }
+
+      return ans;
+    }
+
+    static void Main(string[] args) {
+      string S = Console.ReadLine() ?? "";
+      S = randomGeneratePart();
+
+      Console.WriteLine($"Generated {S}");
+
+      List<Keyword> Keywords = new List<Keyword>();
+      foreach (string key in Parts) {
+        Keywords.Add(new Keyword(key));
+      }
+      /*
+      Keywords.Sort(Keyword.Compare);
+      Keywords.Reverse();
+      */
+      // er が邪魔だが チェックする文字からみて一番長いマッチする文字列を消せばいいという考えにたどり着いた
+      // 辞書順はどうでもいいかなぁ
+
+      if (performSearch(S, Keywords)) {
+        Console.WriteLine("YES");
+      } else {
+        Console.WriteLine("NO");
+      }
+    }
+
+    static bool performSearch(string S, List<Keyword> keywords) {
+      while (S != "") {
+        bool matchExists = false;
+        foreach (Keyword key in keywords) {
+          if (S.Length < key.length) { continue; }
+          Console.WriteLine($"{S} - {S.Substring(0, key.length)} == {key.content} ?");
+          if (S.Substring(0, key.length) == key.content) {
+            string nextStr = S.Substring(key.length, S.Length - (key.length));
+            Console.WriteLine($"Match! Starting recursive search with {nextStr}");
+            matchExists = performSearch(nextStr, keywords);
+            if (matchExists) {
+              S = nextStr;
+              break;
+            } else {
+              continue;
+            }
+          }
+        }
+        if (!matchExists) {
+          return false;
+        }
+      }
+      
+      if (S == "") {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    class Keyword {
+      private string inWord = "";
+      public string content { get => this.inWord; }
+      public int length { get => this.inWord.Length; }
+
+      public Keyword(string keywordString) {
+        this.inWord = keywordString;
+      }
+
+      public static int Compare(Keyword first, Keyword second) {
+        return (first.content.Length - second.content.Length);
+      }
+    }
+  }
+}
